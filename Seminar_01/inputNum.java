@@ -3,12 +3,12 @@ package Seminar_01;
 import java.util.Scanner;
 
 public class inputNum {
-    static int inputNumber() {
+    static double inputNumber() {
         Scanner iScanner = new Scanner(System.in);
         System.out.println("Введите число: ");
-        boolean flag = iScanner.hasNextInt();
+        boolean flag = iScanner.hasNextDouble();
         if (flag == true) {
-            int x = iScanner.nextInt();
+            double x = iScanner.nextDouble();
             iScanner.close();
             return x;
         } else {

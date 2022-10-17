@@ -4,9 +4,9 @@ package Seminar_01;
 
 public class task_1 {
     public static void main(String[] args) {
-        int number = inputNum.inputNumber();
-        int total = number / 2 * (number + 1);
-        System.out.printf("T(%d) = %d", number, total);
+        double number = inputNum.inputNumber();
+        double total = number * (number + 1) / 2;
+        System.out.printf("T(%f) = %f", number, total);
     }
 
 }
