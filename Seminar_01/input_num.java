@@ -12,6 +12,9 @@ public class input_num {
             iScanner.close();
             return x; 
         }
-        else return input_number();
+        else{
+            System.out.println("Некорректный ввод числа");
+            return input_number();
+        }
     }
 }
