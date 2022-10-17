@@ -1,10 +1,10 @@
 package Seminar_01;
 
-// import Seminar_01.input_num;
+// Написать программу вычисления n-ого треугольного числа.
 
 public class task_1 {
     public static void main(String[] args) {
-        int number = input_num.input_number();
+        int number = inputNum.inputNumber();
         int total = number / 2 * (number + 1);
         System.out.printf("T(%d) = %d", number, total);
     }
