@@ -2,7 +2,7 @@ package Seminar_01;
 
 import java.util.Scanner;
 
-public class inputNum {
+public class inputDoubleNum {
     static double inputNumber() {
         Scanner iScanner = new Scanner(System.in);
         System.out.println("Введите число: ");
