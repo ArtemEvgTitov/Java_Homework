@@ -10,9 +10,15 @@ public class inputIntNumber {
         if (flag == true) {
             int x = iScanner.nextInt();
             iScanner.close();
+            if (x < 0){
+                System.out.println("Вы ввели отрицательное число. Я перевёл его в положительное :)");
+                iScanner.close();
+                return -x;
+            }
             return x;
         } else {
             System.out.println("Некорректный ввод числа");
+            iScanner.close();
             return inputNumber();
         }
     }

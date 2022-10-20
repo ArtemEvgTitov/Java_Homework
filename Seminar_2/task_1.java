@@ -2,7 +2,7 @@ package Seminar_2;
 
 // Написать программу, показывающую последовательность действий для игры “Ханойская башня”
 
-public class hanoiTower {
+public class task_1 {
 
     public static void move(int disks, char first, char second, char third) {
         if (disks == 1) {
@@ -16,7 +16,9 @@ public class hanoiTower {
 
     public static void main(String[] args) {
         int disks = inputIntNumber.inputNumber();
-        move(disks, '1', '2', '3');
-
+        if (disks == 0){
+            System.out.println("Пирамидки пусты :)");
+        }
+        else move(disks, '1', '2', '3');
     }
 }
