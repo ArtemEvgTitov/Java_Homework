@@ -13,6 +13,7 @@ public class inputDoubleNum {
             return x;
         } else {
             System.out.println("Некорректный ввод числа");
+            iScanner.close();
             return inputNumber();
         }
     }
