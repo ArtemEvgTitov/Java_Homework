@@ -16,9 +16,10 @@ public class task_1 {
 
     public static void main(String[] args) {
         int disks = inputIntNumber.inputNumber();
-        if (disks == 0){
-            System.out.println("Пирамидки пусты :)");
+        while (disks == 0) {
+            System.out.println("Пирамидки пусты");
+            disks = inputIntNumber.inputNumber();
         }
-        else move(disks, '1', '2', '3');
+        move(disks, '1', '2', '3');
     }
 }

@@ -9,17 +9,12 @@ public class inputIntNumber {
         boolean flag = iScanner.hasNextInt();
         if (flag == true) {
             int x = iScanner.nextInt();
-            iScanner.close();
-            if (x < 0){
-                System.out.println("Вы ввели отрицательное число. Я перевёл его в положительное :)");
-                iScanner.close();
-                return -x;
+            if (x <= 0){
+                return 0;
             }
             return x;
         } else {
-            System.out.println("Некорректный ввод числа");
-            iScanner.close();
-            return inputNumber();
+            return 0;
         }
     }
 }
