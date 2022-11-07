@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import Seminar_2.inputIntNumber;
 
 public class labyrinth {
-    static int[][] pole;
+    static int[][] field;
     static int number_steps = 1;
-    static Сoordinates T_starta = new Сoordinates();
-    static Сoordinates T_finish = new Сoordinates();
+    static Сoordinates starting = new Сoordinates();
+    static Сoordinates finishing = new Сoordinates();
     static ArrayList<Сoordinates> queue = new ArrayList<Сoordinates>();
     static ArrayList<Сoordinates> copy_queue = new ArrayList<Сoordinates>();
 
@@ -17,20 +17,20 @@ public class labyrinth {
         int num_wall = -1;
 
         System.out.println("\nДан лабиринт: ");
-        pole = get_matrix();
-        print_matrix(pole, num_start, num_finish, num_wall);
+        field = get_matrix();
+        print_matrix(field, num_start, num_finish, num_wall);
 
         System.out.println("\nСтроим все возможные маршруты: ");
         wave(num_start, num_finish, num_wall);
 
         number_steps -= 1;
 
-        print_matrix(pole, num_start, num_finish, num_wall);
+        print_matrix(field, num_start, num_finish, num_wall);
         System.out.println("\nКратчайший путь: " + number_steps + " шагов");
 
         finding_path();
         System.out.println("\nСамый короткий маршрут:");
-        print_matrix(pole, num_start, num_finish, num_wall);
+        print_matrix(field, num_start, num_finish, num_wall);
     }
 
     static int[][] get_matrix() {
@@ -46,26 +46,26 @@ public class labyrinth {
             System.out.println("Повторите ввод");
             column = inputIntNumber.inputNumber();
         }
-        int[][] pole = new int[row][column];
-        for (int i = 0; i < pole.length; i++) {
-            for (int j = 0; j < pole[i].length; j++) {
-                pole[i][j] = 0;
+        int[][] field = new int[row][column];
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[i].length; j++) {
+                field[i][j] = 0;
             }
         }
         int block = row * column / 4;
         while (block > 0) {
             int randomRow = (int) (Math.random() * row);
             int randomColumn = (int) (Math.random() * column);
-            pole[randomRow][randomColumn] = -1;
+            field[randomRow][randomColumn] = -1;
             block--;
         }
         int randomRow = (int) (Math.random() * row);
         int randomColumn = (int) (Math.random() * column);
-        pole[randomRow][randomColumn] = -5;
+        field[randomRow][randomColumn] = -5;
         randomRow = (int) (Math.random() * row);
         randomColumn = (int) (Math.random() * column);
-        pole[randomRow][randomColumn] = -7;
-        return pole;
+        field[randomRow][randomColumn] = -7;
+        return field;
     }
 
     static void print_matrix(int[][] arr, int start, int finish, int wall) {
@@ -97,11 +97,11 @@ public class labyrinth {
 
     static void wave(int start, int finish, int wall) {
         int k, m;
-        find_point(T_starta, start);
-        find_point(T_finish, finish);
+        find_point(starting, start);
+        find_point(finishing, finish);
         boolean stop = false;
 
-        queue.add(T_starta);
+        queue.add(starting);
 
         while (queue.size() != 0) {
             copy_queue.clear();
@@ -116,13 +116,13 @@ public class labyrinth {
                 if (k > 0) {
                     stop = step_left(k, m);
                 }
-                if (k < pole.length - 1) {
+                if (k < field.length - 1) {
                     stop = step_right(k, m);
                 }
                 if (m > 0) {
                     stop = step_up(k, m);
                 }
-                if (m < pole[m].length - 1) {
+                if (m < field[m].length - 1) {
                     stop = step_down(k, m);
                 }
                 if (stop == true) {
@@ -136,10 +136,10 @@ public class labyrinth {
 
     static void find_point(Сoordinates N_point, int number) {
         boolean flag = true;
-        for (int i = 0; i < pole.length; i++) {
+        for (int i = 0; i < field.length; i++) {
             if (flag) {
-                for (int j = 0; j < pole[i].length; j++) {
-                    if (pole[i][j] == number) {
+                for (int j = 0; j < field[i].length; j++) {
+                    if (field[i][j] == number) {
                         N_point.i = i;
                         N_point.j = j;
                         flag = false;
@@ -153,40 +153,40 @@ public class labyrinth {
     }
 
     static boolean step_left(int i, int j) {
-        if (T_finish.i == i - 1 && T_finish.j == j) {
+        if (finishing.i == i - 1 && finishing.j == j) {
             return true;
-        } else if (pole[i - 1][j] == 0) {
-            pole[i - 1][j] = number_steps;
+        } else if (field[i - 1][j] == 0) {
+            field[i - 1][j] = number_steps;
             queue.add(new Сoordinates(i - 1, j));
         }
         return false;
     }
 
     static boolean step_right(int i, int j) {
-        if (T_finish.i == i + 1 && T_finish.j == j) {
+        if (finishing.i == i + 1 && finishing.j == j) {
             return true;
-        } else if (pole[i + 1][j] == 0) {
-            pole[i + 1][j] = number_steps;
+        } else if (field[i + 1][j] == 0) {
+            field[i + 1][j] = number_steps;
             queue.add(new Сoordinates(i + 1, j));
         }
         return false;
     }
 
     static boolean step_up(int i, int j) {
-        if (T_finish.i == i && T_finish.j == j - 1) {
+        if (finishing.i == i && finishing.j == j - 1) {
             return true;
-        } else if (pole[i][j - 1] == 0) {
-            pole[i][j - 1] = number_steps;
+        } else if (field[i][j - 1] == 0) {
+            field[i][j - 1] = number_steps;
             queue.add(new Сoordinates(i, j - 1));
         }
         return false;
     }
 
     static boolean step_down(int i, int j) {
-        if (T_finish.i == i && T_finish.j == j + 1) {
+        if (finishing.i == i && finishing.j == j + 1) {
             return true;
-        } else if (pole[i][j + 1] == 0) {
-            pole[i][j + 1] = number_steps;
+        } else if (field[i][j + 1] == 0) {
+            field[i][j + 1] = number_steps;
             queue.add(new Сoordinates(i, j + 1));
         }
         return false;
@@ -194,33 +194,33 @@ public class labyrinth {
 
     static void finding_path() {
         boolean flag = true;
-        int i = T_finish.i;
-        int j = T_finish.j;
+        int i = finishing.i;
+        int j = finishing.j;
         number_steps -= 1;
 
         while (flag == true) {
 
-            if ((T_starta.i == i && T_starta.j == j) || number_steps <= 0) {
+            if ((starting.i == i && starting.j == j) || number_steps <= 0) {
                 break;
             }
 
-            if (j > 0 && pole[i][j - 1] == number_steps) {
-                pole[i][j - 1] = -2;
+            if (j > 0 && field[i][j - 1] == number_steps) {
+                field[i][j - 1] = -2;
                 j -= 1;
                 number_steps -= 1;
                 continue;
-            } else if (i > 0 && pole[i - 1][j] == number_steps) {
-                pole[i - 1][j] = -2;
+            } else if (i > 0 && field[i - 1][j] == number_steps) {
+                field[i - 1][j] = -2;
                 i -= 1;
                 number_steps -= 1;
                 continue;
-            } else if (i < pole.length - 1 && pole[i + 1][j] == number_steps) {
-                pole[i + 1][j] = -2;
+            } else if (i < field.length - 1 && field[i + 1][j] == number_steps) {
+                field[i + 1][j] = -2;
                 i += 1;
                 number_steps -= 1;
                 continue;
-            } else if (j < pole[j].length - 1 && pole[i][j + 1] == number_steps) {
-                pole[i][j + 1] = -2;
+            } else if (j < field[j].length - 1 && field[i][j + 1] == number_steps) {
+                field[i][j + 1] = -2;
                 j += 1;
                 number_steps -= 1;
                 continue;
