@@ -11,4 +11,28 @@ public class CreateProduct {
         temp.price = -1;
     }
 
+    public CreateProduct setCount(int count) {
+        temp.count = count;
+        return this;
+    }
+
+    public CreateProduct setDescription(String description) {
+        temp.description = description;
+        return this;
+    }
+
+    public CreateProduct setName(String name) {
+        temp.name = name;
+        return this;
+    }
+
+    public CreateProduct setPrice(double price) {
+        temp.price = price;
+        return this;
+    }
+
+    public Product Create() {
+        return temp;
+    }
+
 }
