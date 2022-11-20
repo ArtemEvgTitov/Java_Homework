@@ -1,10 +1,10 @@
 package Seminar_6;
 
-public class Products {
+public class Product {
     public int count;
     public String name;
     public double price;
-    public StringBuilder description;
+    public String description;
 
     public void print() {
         System.out.println(
