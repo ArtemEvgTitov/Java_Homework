@@ -9,7 +9,7 @@ public class Product {
     public void print() {
         System.out.println(
                 String.format(
-                        "%d %s %f %s",
+                        "%d %s %.2f %s",
                         this.count,
                         this.name,
                         this.price,

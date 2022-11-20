@@ -30,17 +30,15 @@ class Goods {
 
     public class App {
         public static void main(String[] args) {
-            Product currentProduct = new Product();
-            currentProduct.print();
-        
-            currentProduct = new CreateProduct()
-                .setCount(1)
-                .setName("Молоко")
-                .setPrice(65.99)
-                .setDescription("2,5%")
-                .Create();
-        
-            currentProduct.print();
+            Product Milk = new Product();
+
+            Milk = new CreateProduct()
+                    .setCount(1)
+                    .setName("Молоко")
+                    .setPrice(65.99)
+                    .Create();
+
+            Milk.print();
         }
     }
 }
