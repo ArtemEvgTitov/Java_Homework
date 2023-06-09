@@ -3,7 +3,7 @@ package Seminar_2;
 import java.util.Scanner;
 
 public class inputIntNumber {
-    static int inputNumber() {
+    public static int inputNumber() {
         Scanner iScanner = new Scanner(System.in);
         System.out.println("Введите число: ");
         boolean flag = iScanner.hasNextInt();
